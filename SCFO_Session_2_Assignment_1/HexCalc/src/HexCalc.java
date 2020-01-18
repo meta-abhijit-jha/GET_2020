@@ -12,50 +12,49 @@ import java.lang.Math;
 
 public class HexCalc {
 
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		int choice;
 		double decimalOne = 0, decimalTwo = 0;
 		System.out.println("*******HEX_CALCULATOR*******");
 		System.out.println("Please Enter Appropriate Option");
 		System.out.println("1.Add 2.Subtract 3.Multiply 4.Divide 5.HEXtoDecimal\nEnter any other integer for comparison of HEX numbers\n");
-		try{
+		try {
 			Scanner input = new Scanner(System.in);
 			choice = input.nextInt();
 			if(choice <= 4) {
 				System.out.println("Enter first number");
-				String hex1 = verifyInput1();
-				decimalOne = hexToDec(hex1);
+				String hex1 = verifyInput();
+				decimalOne = convertHexToDec(hex1);
 				System.out.println("Enter second number");
-				String hex2 = verifyInput1();
-				decimalTwo = hexToDec(hex2);
+				String hex2 = verifyInput();
+				decimalTwo = convertHexToDec(hex2);
 			}
 			switch(choice) {
-			case 1: {
-				add(decimalOne,decimalTwo);
-				break;
-			}
-			case 2: {
-				subtract(decimalOne,decimalTwo);
-				break;
-			}
-			case 3: {
-				multiply(decimalOne,decimalTwo);
-				break;
-			}
-			case 4: {
-				divide(decimalOne,decimalTwo);
-				break;
-			}
-			case 5: {
-				System.out.println("Enter number you want to convert");
-				String hex1 = verifyInput1();
-				System.out.println( "Converted number is : "+hexToDec(hex1) );
-				break;
-			}
-			default: {
-				comparison();
-			}
+				case 1: {
+					add(decimalOne,decimalTwo);
+					break;
+				}
+				case 2: {
+					subtract(decimalOne,decimalTwo);
+					break;
+				}
+				case 3: {
+					multiply(decimalOne,decimalTwo);
+					break;
+				}
+				case 4: {
+					divide(decimalOne,decimalTwo);
+					break;
+				}
+				case 5: {
+					System.out.println("Enter number you want to convert");
+					String hex1 = verifyInput();
+					System.out.println( "Converted number is : "+convertHexToDec(hex1) );
+					break;
+				}
+				default: {
+					comparison();
+				}
 			}
 		} catch(Exception ex) {
 			System.out.println("Please restart application with correct input");
@@ -64,43 +63,52 @@ public class HexCalc {
 
 	static void add(double first, double second) {
 		double calc = first + second;
-		System.out.println( decToHex(calc) );
+		System.out.println( convertDecToHex(calc) );
 	}
 
 	static void subtract(double first, double second) {
 		double calc = first - second;
-		System.out.println( decToHex(calc) );
+		System.out.println( convertDecToHex(calc) );
 	}
 
 	static void multiply(double first, double second) {
 		double calc = first * second;
-		System.out.println( decToHex(calc) );
+		System.out.println( convertDecToHex(calc) );
 	}
 
 	static void divide(double first, double second) {
 		double calc = first / second;
-		System.out.println( decToHex(calc) );
+		System.out.println( convertDecToHex(calc) );
 	}
 
-	static String verifyInput1() {
+	static String verifyInput() {
 		String hex;
-		Scanner input1 = new Scanner(System.in);
-		hex = input1.nextLine();
+		int count = 0;
+		Scanner input = new Scanner(System.in);
+		hex = input.nextLine();
 		for(int i = 0; i < hex.length(); i++) 
 		{
 			char ch = hex.charAt(i);
 			int ascii = (int)ch;
 			if( ((ascii >= 65) && (ascii <= 70)) || ((ascii >= 48) && (ascii <= 57)) ) {
-				continue;
+				count = count + 1;
 			} else {
-				System.out.println("Wrong Input, Please re-enter Hex number");
-				verifyInput1();
-				}
+				break;
+			}
+
 		}
-		return hex;
+
+		String s;
+		if(count == hex.length()) {
+			s = hex;
+		} else {
+			System.out.println("Wrong input enter string again");
+			s = verifyInput();
+		}
+		return s;
 	}
 
-	static double hexToDec(String hex) {
+	static double convertHexToDec(String hex) {
 		double decnum = 0,power = 0;
 		for(int i = hex.length()-1; i >= 0; i--) {
 			char ch = hex.charAt(i);
@@ -108,17 +116,17 @@ public class HexCalc {
 			if(ascii >= 65) {
 				decnum = decnum + (ascii - 55) * Math.pow(16,power);
 				power = power + 1;
-				} else {
+			} else {
 				decnum = decnum + (ascii - 48) * Math.pow(16,power);
 				power = power + 1;
-				}
 			}
+		}
 		return decnum;
 	}
 
-	static String decToHex(double dec) {
-		String hex="";
-		char hexchars[]={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+	static String convertDecToHex(double dec) {
+		String hex = "";
+		char hexchars[] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
 		int rem,value;
 		value = (int)dec;
 		while(value > 0)  
@@ -131,23 +139,41 @@ public class HexCalc {
 	}
 
 	static void comparison() {
-		String hex1 = verifyInput1();
-		String hex2 = verifyInput1();
-		if( hex1.length() > hex2.length() ) {
-			System.out.println("hex1 is larger");
-			} else if( hex1.length() < hex2.length() ) {
-				System.out.println("hex2 is larger");
-				} else {
-					for(int i = 0; i < hex1.length(); i++) {
-						if( hex1.charAt(i) == hex2.charAt(i) ) {
-							continue;
-							} else if( hex1.charAt(i) > hex2.charAt(i) ) {
-								System.out.println("hex1 is larger");
-								break;
-								} else {
-									System.out.println("hex2 is larger");
-									}
-						}
-					}
+		System.out.println("Please input first number");
+		String hex1 = verifyInput();
+		System.out.println("Please input second number");
+		String hex2 = verifyInput();
+		int countHex1 = 0, countHex2 = 0;
+		for(int i = 0; i < hex1.length(); i++) {
+			if(hex1.charAt(i) == '0'){
+				countHex1++;	
+			} else {
+				break;
+			}
 		}
+		for(int i = 0; i < hex2.length(); i++) {
+			if(hex2.charAt(i) == '0'){
+				countHex2++;	
+			} else {
+				break;
+			}
+		}
+		if( (hex1.length() - countHex1) > (hex2.length() - countHex2) ) {
+			System.out.println("First number is larger");
+		} else if( (hex1.length() - countHex1) < (hex2.length() - countHex2) ) {
+			System.out.println("Second number is larger");
+		} else {
+			for(int i = hex1.length() - countHex1 - 1; i < hex1.length(); i++) {
+				if( (hex1.charAt(i) - countHex1) == (hex2.charAt(i) - countHex2) ) {
+					continue;
+				} else if( (hex1.charAt(i) - countHex1) > (hex2.charAt(i) - countHex2) ) {
+					System.out.println("First number is larger");
+					break;
+				} else {
+					System.out.println("Second number is larger");
+					break;
+				}
+			}
+		}
+	}
 }
