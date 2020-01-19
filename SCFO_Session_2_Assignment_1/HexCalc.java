@@ -14,7 +14,7 @@ public class HexCalc {
 
 	public static void main(String[] args) {
 		int choice;
-		double decimalOne = 0, decimalTwo = 0;
+		int decimalOne = 0, decimalTwo = 0;
 		System.out.println("*******HEX_CALCULATOR*******");
 		System.out.println("Please Enter Appropriate Option");
 		System.out.println("1.Add 2.Subtract 3.Multiply 4.Divide 5.HEXtoDecimal\nEnter any other integer for comparison of HEX numbers\n");
@@ -61,43 +61,42 @@ public class HexCalc {
 		}
 	}
 
-	static void add(double first, double second) {
-		double calc = first + second;
-		System.out.println( convertDecToHex(calc) );
+	static void add(int first, int second) {
+		int calc = first + second;
+		System.out.println( "Addition of given numbers: "+convertDecToHex(calc) );
 	}
 
-	static void subtract(double first, double second) {
-		double calc = first - second;
-		System.out.println( convertDecToHex(calc) );
+	static void subtract(int first, int second) {
+		int calc = first - second;
+		System.out.println( "Subtraction of given numbers: "+convertDecToHex(calc) );
 	}
 
-	static void multiply(double first, double second) {
-		double calc = first * second;
-		System.out.println( convertDecToHex(calc) );
+	static void multiply(int first, int second) {
+		int calc = first * second;
+		System.out.println( "Multiplication of given numbers: "+convertDecToHex(calc) );
 	}
 
-	static void divide(double first, double second) {
-		double calc = first / second;
-		System.out.println( convertDecToHex(calc) );
+	static void divide(int first, int second) {
+		int calc = first / second;
+		System.out.println( "Division of given numbers: " +convertDecToHex(calc) );
 	}
 
 	static String verifyInput() {
 		String hex;
-		int count = 0;
+		int count = 0, asciiA = 65, asciiF = 70, asciiZero = 48, asciiNine = 57;
 		Scanner input = new Scanner(System.in);
 		hex = input.nextLine();
 		for(int i = 0; i < hex.length(); i++) 
 		{
 			char ch = hex.charAt(i);
-			int ascii = (int)ch;
-			if( ((ascii >= 65) && (ascii <= 70)) || ((ascii >= 48) && (ascii <= 57)) ) {
+			int asciiValue = (int)ch;
+			if( ((asciiValue >= asciiA) && (asciiValue <= asciiF)) || ((asciiValue >= asciiZero) && (asciiValue <= asciiNine)) ) {
 				count = count + 1;
 			} else {
 				break;
 			}
 
 		}
-
 		String s;
 		if(count == hex.length()) {
 			s = hex;
@@ -108,26 +107,26 @@ public class HexCalc {
 		return s;
 	}
 
-	static double convertHexToDec(String hex) {
-		double decnum = 0,power = 0;
-		for(int i = hex.length()-1; i >= 0; i--) {
+	static int convertHexToDec(String hex) {
+		double power = 0;
+		int decNum = 0;
+		for(int i = hex.length() - 1; i >= 0; i--) {
 			char ch = hex.charAt(i);
-			double ascii = (int)ch;
-			if(ascii >= 65) {
-				decnum = decnum + (ascii - 55) * Math.pow(16,power);
-				power = power + 1;
+			int asciiValue = (int)ch;
+			if(asciiValue >= 65) {
+				decNum = decNum + (asciiValue - 55) * (int)Math.pow(16,power);  //asciiValue-55 will give value 10 for 'A' , 11 for 'B' and so on...
 			} else {
-				decnum = decnum + (ascii - 48) * Math.pow(16,power);
-				power = power + 1;
+				decNum = decNum + (asciiValue - 48) * (int)Math.pow(16,power);  //asciiValue-48 will give 0-9 values for string '0'.....'9' 
 			}
+			power = power + 1;
 		}
-		return decnum;
+		return decNum;
 	}
 
-	static String convertDecToHex(double dec) {
+	static String convertDecToHex(int dec) {
 		String hex = "";
 		char hexchars[] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
-		int rem,value;
+		int rem, value;
 		value = (int)dec;
 		while(value > 0)  
 		{  
