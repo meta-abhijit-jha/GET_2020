@@ -21,9 +21,15 @@ public class JobScheduler {
 			int num = input.nextInt();
 			System.out.println("Enter Array");
 			int inputArray[][] = new int[num][2];
+			for(int i = 0, j = 0; i < num; i++) {
+				Scanner input1 = new Scanner(System.in);
+			    inputArray[i][j] = input1.nextInt();
+			    Scanner input2 = new Scanner(System.in);
+			    inputArray[i][j + 1] = input2.nextInt();
+			}
 			System.out.println("\narrival  burst\n time    time");
 			for(int i = 0, j = 0; i < num; i++) {
-				System.out.println("  ["+inputArray[i][j]+"]    ["+inputArray[i][j+1]+"]");
+				System.out.println("  ["+inputArray[i][j]+"]    ["+inputArray[i][j + 1]+"]");
 				System.out.print("\n");
 			}
 			int completion[] = new int[num];
@@ -31,19 +37,19 @@ public class JobScheduler {
 			int waiting[] = new int[num];
 			for(int i = 0, j=0; i < num; i++) {
 				if(i == 0) {
-					completion[i] = inputArray[i][j+1] + inputArray[i][j];
+					completion[i] = inputArray[i][j + 1] + inputArray[i][j];
 					waiting[i] = 0;
 				} else {
-					if(completion[i-1] >= inputArray[i][j]) {
-						waiting[i] = completion[i-1] - inputArray[i][j];
-						completion[i] = completion[i-1] + inputArray[i][j+1];
+					if(completion[i - 1] >= inputArray[i][j]) {
+						waiting[i] = completion[i - 1] - inputArray[i][j];
+						completion[i] = completion[i - 1] + inputArray[i][j + 1];
 					} else {
 						waiting[i] = 0;
-						completion[i] = inputArray[i][j+1] + inputArray[i][j];
+						completion[i] = inputArray[i][j + 1] + inputArray[i][j];
 					}
 				}
 				turnAround[i] = completion[i] - inputArray[i][j];
-				System.out.println("Process number "+(i+1));
+				System.out.println("Process number "+(i + 1));
 				System.out.println("Completion time: "+completion[i]);
 				System.out.println("Waiting time: "+waiting[i]);
 				System.out.println("Turn Around time: "+turnAround[i]+"\n");
