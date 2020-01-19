@@ -3,7 +3,6 @@
  * @method fcfs() to implement First Come First Serve Algorithm, it takes arrival time and burst time of each process in Array as input.
  * @method avgWaitingTime() to Calculate average waiting time
  * @method maxWaitingTime() to Calculate maximum waiting time
- *
  */
 
 import java.util.Scanner;
@@ -71,8 +70,9 @@ public class JobScheduler {
 		}
 	}
 
-	static int avgWaitingTime(int[] waiting, int num){
-		int avg = 0,total = 0;
+	static float avgWaitingTime(int[] waiting, int num){
+		float total = 0;
+		float avg = 0;
 		for(int i = 0; i < num; i++){
 			total = total + waiting[i];
 		}
