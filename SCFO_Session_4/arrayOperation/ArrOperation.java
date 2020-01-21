@@ -28,7 +28,7 @@ public class ArrOperation {
 		}
 		return clumps;
 	}
-	
+
 	/**
 	 * 
 	 * @param inputArray takes array as input
@@ -41,7 +41,10 @@ public class ArrOperation {
 		int fixedArray[] = new int[inputArray.length];
 		int index = 0;
 		int swapArray[] = new int[inputArray.length];
-		try {
+		if (inputArray.length == 0) {
+			throw new AssertionError();
+		}
+		if(inputArray[inputArray.length-1] != inputX) {
 			for(int i = 0; i < inputArray.length; i++) {
 				if(inputArray[i] == inputX) {
 					fixedArray[i] = inputArray[i];
@@ -60,12 +63,12 @@ public class ArrOperation {
 					index++;
 				}
 			}
-		} catch(Exception ex) {
-			System.out.println("Assertion error");
+		} else {
+			throw new AssertionError();
 		}
 		return fixedArray;
 	}
-	
+
 	/**
 	 * 
 	 * @param inputArray is the array we take as input
@@ -87,7 +90,7 @@ public class ArrOperation {
 		}
 		return -1;
 	}
-	
+
 	/**
 	 * 
 	 * @param inputArray takes array as input

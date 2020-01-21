@@ -11,7 +11,7 @@ public class fixXYTest {
 		int[] array = {5, 4, 9, 4, 9, 5};
 		array = arrayOperationObj.fixXY(array, 4, 5);
 		int[] expected = {9, 4, 5, 4, 5, 9};
-		assertArrayEquals(expected, array);
+		assertArrayEquals("Case 1", expected, array);
 	}
 
 	@Test
@@ -29,7 +29,7 @@ public class fixXYTest {
 			assertEquals(1, arrayOperationObj.fixXY(array, 4, 5));
 		}
 		catch (AssertionError e) {
-			System.out.println("finished");
+			System.out.println("finished empty");
 		}
 	}
 
@@ -37,7 +37,7 @@ public class fixXYTest {
 	public void expression4() {
 		int[] array = {1, 2, 4, 4, 4, 6, 7};
 		try {
-			assertEquals("cosecutive x value", 1, arrayOperationObj.fixXY(array, 4, 5));
+			assertEquals("consecutive x value", 1, arrayOperationObj.fixXY(array, 4, 5));
 		}
 		catch (AssertionError e) {
 			System.out.println("finished");
