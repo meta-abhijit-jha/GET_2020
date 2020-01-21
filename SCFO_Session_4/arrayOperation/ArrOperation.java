@@ -1,9 +1,19 @@
 package arrayOperation;
 import java.util.Scanner;
 
+/**
+ * Class ArrOperation has features to count clumps, fix an array by inputX and inputY, split an array and also to count maximum mirror image
+ * @author Abhijit
+ *
+ */
 
 public class ArrOperation {
 
+	/**
+	 * 
+	 * @param inputArray takes array as input
+	 * @return number of clumps(2 or more adjacent integers are same) in the same array
+	 */
 
 	static int countClumps(int[] inputArray) {
 		int count = 0, clumps = 0;
@@ -18,6 +28,14 @@ public class ArrOperation {
 		}
 		return clumps;
 	}
+	
+	/**
+	 * 
+	 * @param inputArray takes array as input
+	 * @param inputX is the value whose position can't be changed
+	 * @param inputY is the value which comes just after inputX
+	 * @return fixedArray which is after fixing array according to inputX and inputY 
+	 */
 
 	static int[] fixXY(int[] inputArray, int inputX, int inputY) {
 		int fixedArray[] = new int[inputArray.length];
@@ -47,6 +65,12 @@ public class ArrOperation {
 		}
 		return fixedArray;
 	}
+	
+	/**
+	 * 
+	 * @param inputArray is the array we take as input
+	 * @return the position where array split into equal halves of sum
+	 */
 
 	static int splitArray(int[] inputArray) {
 		int total = 0, value = 0;
@@ -63,6 +87,12 @@ public class ArrOperation {
 		}
 		return -1;
 	}
+	
+	/**
+	 * 
+	 * @param inputArray takes array as input
+	 * @return maximum mirror image in the given inputArray
+	 */
 
 	static int maxMirror(int[] inputArray) {
 		int count = 0, i = 0, j = 0, maxCount = -1;
