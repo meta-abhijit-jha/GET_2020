@@ -35,7 +35,11 @@ public class StringImplementation {
 					System.out.println(toCaseChange(choice));
 				} else {
 					System.out.print("largest word in given string is: ");
-					largestWord(choice);
+					char[] largestWord ; 
+					largestWord = largestWord(choice);
+					for(int i = 0; i < largestWord.length; i++) {
+						System.out.print(largestWord[i]);
+					}
 				}
 			}
 		} catch (Exception ex) {
@@ -97,7 +101,7 @@ public class StringImplementation {
 			if( (asciiValue >= asciiSmallA) && (asciiValue <= asciiSmallZ) ) {
 				array[i] = (char)(asciiValue - convertCase);
 			} else if( (asciiValue >= asciiA) && (asciiValue <= asciiZ) ) {
-				array[i] = (char)(asciiValue + 32);
+				array[i] = (char)(asciiValue + convertCase);
 			} else {
 				array[i] = (char)(asciiValue);
 			}
@@ -110,7 +114,7 @@ public class StringImplementation {
 	 * @param text takes input String
 	 */
 	
-	static void largestWord(String text) {
+	static char[] largestWord(String text) {
 		int size = text.length();
 		int ascii = 0;
 		int count = 0, endIndex = 0, maxCount = 0;
@@ -129,10 +133,14 @@ public class StringImplementation {
 				count = 0;
 			}
 		}
+		char[] largestWord = new char[maxCount];
+		int index = 0;
 		int start = endIndex - maxCount + 1;
 		for(int i = start; i <= endIndex; i++) {
-			System.out.print(text.charAt(i));
+			largestWord[index] = text.charAt(i);
+			index++;
 		}
+		return largestWord;
 	}
 	
 }

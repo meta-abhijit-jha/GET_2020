@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Class area can calculate area of triangle, rectangle, square and circle.
@@ -19,9 +19,9 @@ public class Area {
 	
 	static void chooseOption() {
 		System.out.println("\nEnter your choice\n1.Triangle 2.Rectangle 3.Square 4.Circle");
-		Scanner input = new Scanner(System.in);
-		int choice = input.nextInt();
 		try {
+			Scanner input = new Scanner(System.in);
+			int choice = input.nextInt();
 			switch(choice) {
 				case 1 : {
 					System.out.print("Enter width: ");
@@ -64,55 +64,51 @@ public class Area {
 				}
 			}
 			chooseOption();
-		} catch(Exception ex) {
+		} catch(InputMismatchException ex) {
 			System.out.println("Restart application and enter correct input");
 		}
 	}
 	
 	/**
-	 * 
+	 * To calculate area of Triangle
 	 * @param width of triangle
 	 * @param height of triangle from it's base
 	 * @return area of triangle
 	 */
 	
 	static double areaTriangle(double width, double height) {
-		double area = (0.5 * width) * height;
-		return area;
+		return (0.5 * width) * height;
 	}
 	
 	/**
-	 * 
+	 * To calculate area of Rectangle
 	 * @param width of rectangle
 	 * @param height of rectangle
 	 * @return area of rectangle
 	 */
 	
 	static double areaRectangle (double width, double height) {
-		double area = width * height;
-		return area;
+		return width * height;
 	}
 	
 	/**
-	 * 
+	 * To calculate area of Square
 	 * @param width is the side of a square
 	 * @return area of the square
 	 */
 	
 	static double areaSquare(double width) {
-		double area = width * width;
-		return area;
+		return width * width;
 	}
 	
 	/**
-	 * 
+	 * To calculate area of Circle
 	 * @param radius of the circle
 	 * @return area of the circle
 	 */
 	
 	static double areaCircle(double radius) {
-		double area = 3.14 * (radius * radius);
-		return area;
+		return 3.14 * (radius * radius);         // Value of Pi is taken as 3.14 in this case
 	}
 	
 }

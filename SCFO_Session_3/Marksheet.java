@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 /**
  * Marksheet class has features to calculate average, maximum grade, minimum grade and percentage of students passed for given grades of different students
  * @author Abhijit
@@ -15,11 +15,11 @@ public class Marksheet {
 			int numOfStudents = input.nextInt();
 			if(numOfStudents > 0) {
 				System.out.println("Enter their marks serial wise");
-				int gradeArray[] = new int[numOfStudents];
+				double gradeArray[] = new double[numOfStudents];
 				for(int i = 0; i < numOfStudents; i++) {
 					Scanner input1 = new Scanner(System.in);
-					gradeArray[i] = input1.nextInt();
-					if ( (gradeArray[i] > 100) || (gradeArray[i] < 0) ) {
+					gradeArray[i] = input1.nextDouble();
+					if ( (gradeArray[i] > 100.0) || (gradeArray[i] < 0.0) ) {
 						System.out.println("Error in input, please re-enter grade between 0-100");
 						i = i - 1;
 					}
@@ -32,8 +32,10 @@ public class Marksheet {
 			} else {
 				System.out.println("Number of students can't be zero, Please restart the application");
 			}
-		} catch(Exception ex) {
+		} catch(InputMismatchException ex) {
 			System.out.println("Restart application and enter correct input");
+		} catch(ArithmeticException ey) {
+			System.out.println("Arithmetic Error! Please check all inputs");
 		}
 	}
 
@@ -43,7 +45,7 @@ public class Marksheet {
 	 * @param gradeArray for grades of students
 	 */
 
-	static void chooseOption(int numOfStudents, int[] gradeArray) {
+	static void chooseOption(int numOfStudents, double[] gradeArray) {
 		System.out.println("Enter your choice\n1.Average 2.Maximum Grade 3.Minimum Grade 4.Percentage of Student Passed");
 		Scanner input = new Scanner(System.in);
 		int choice = input.nextInt();
@@ -76,30 +78,29 @@ public class Marksheet {
 	}
 	
 	/**
-	 * 
+	 * To calculate average of grades
 	 * @param numOfStudents for number of students in array
 	 * @param gradeArray for grades of those students
 	 * @return average grade of students
 	 */
 	
-	static float average(int numOfStudents, int[] gradeArray) {
-		float total = 0;
+	static double average(int numOfStudents, double[] gradeArray) {
+		double total = 0;
 		for(int i = 0; i < numOfStudents; i++) {
 			total = total + gradeArray[i];
 		}
-		float average = (float)(total / numOfStudents);
-		return average;
+		return total / numOfStudents;
 	}
 	
 	/**
-	 * 
+	 * To calculate maximum grade among students
 	 * @param numOfStudents for number of students in array
 	 * @param gradeArray for grades of those students
 	 * @return maximum grade among the students
 	 */
 	
-	static int maximumGrade(int numOfStudents, int[] gradeArray) {
-		int max = 0;
+	static double maximumGrade(int numOfStudents, double[] gradeArray) {
+		double max = 0;
 		for(int i = 0; i < numOfStudents; i++) {
 			if(gradeArray[i] > max ) {
 				max = gradeArray[i];
@@ -109,14 +110,14 @@ public class Marksheet {
 	}
 
 	/**
-	 * 
+	 * To calculate minimum grade among students
 	 * @param numOfStudents for number of students in array
 	 * @param gradeArray for grades of those students
 	 * @return minimum grade among the students
 	 */
 	
-	static int minimumGrade(int numOfStudents, int[] gradeArray) {
-		int min = 100;
+	static double minimumGrade(int numOfStudents, double[] gradeArray) {
+		double min = 100;
 		for(int i = 0; i < numOfStudents; i++) {
 			if(gradeArray[i] < min ) {
 				min = gradeArray[i];
@@ -126,21 +127,20 @@ public class Marksheet {
 	}
 	
 	/**
-	 * 
+	 * To calculate passing percentage of students
 	 * @param numOfStudents for number of students in array
 	 * @param gradeArray for grades of those students
 	 * @return percentage of students passed in float
 	 */
 
-	static float studentPassingPercentage(int numOfStudents, int[] gradeArray) {
-		float count = 0;
+	static double studentPassingPercentage(int numOfStudents, double[] gradeArray) {
+		double count = 0;
 		for(int i = 0; i < numOfStudents; i++) {
 			if(gradeArray[i] >= 40 ) {
 				count++;
 			}
 		}
-		float passPercentage = (float)( (count / numOfStudents) * 100 );
-		return passPercentage;
+		return (count / numOfStudents) * 100;
 	}
 
 }
