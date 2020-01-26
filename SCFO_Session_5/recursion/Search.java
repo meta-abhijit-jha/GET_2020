@@ -11,7 +11,7 @@ public class Search {
 	}
 
 	/**
-	 * 
+	 * Linearly search the element
 	 * @param inputArray
 	 * @param element is the number we want to search
 	 * @param index is the start index of array
@@ -29,7 +29,7 @@ public class Search {
 	}
 
 	/**
-	 * 
+	 * To implement Binary Search Algorithm
 	 * @param inputArray
 	 * @param element  is the element we want to search
 	 * @param startIndex starting index of array

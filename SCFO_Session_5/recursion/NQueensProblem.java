@@ -14,7 +14,7 @@ public class NQueensProblem {
 	 * @param size as a length of chess board
 	 */
 	public void displayBoard(int[][] arr, int size) {
-		for ( int i=0; i<size; i++){
+		for( int i=0; i<size; i++) {
 			for ( int j=0; j<size; j++)
 				System.out.print(arr[j][i]);
 			System.out.println();
@@ -22,7 +22,7 @@ public class NQueensProblem {
 	}
 
 	/**
-	 *
+	 * to check if queens are placed correctly or not
 	 * @param chessBoard as a 2D Matrix of Chess Board
 	 * @param col  as a Column Of the Chess Board
 	 * @param size as a Length Of Board
@@ -46,7 +46,7 @@ public class NQueensProblem {
 
 
 	/**
-	 *
+	 * To check if queen's location is safe or not
 	 * @param chessBoard as a 2D Matrix of Chess Board
 	 * @param row as a current row
 	 * @param col as a current column

@@ -3,13 +3,13 @@ public class LCM_HCF {
 
 	
 	public static void main(String[] args) {
-		System.out.println(hcf(105,150));
+		System.out.println(hcf(150,350));
 		System.out.println(lcm(105,150));
 
 	}
 
 	/**
-	 * 
+	 * To calculate HCF of two numbers
 	 * @param inputX
 	 * @param inputY
 	 * @return hcf of input X and input Y
@@ -25,15 +25,12 @@ public class LCM_HCF {
 				return inputY;
 			}
 		} else {
-			int swapXY = inputY;
-			inputY = inputX;
-			inputX = swapXY;
-			return hcf(inputX, inputY);
+			return hcf(inputY, inputX);
 		}
 	}
 	
 	/**
-	 * 
+	 * To calculate LCM of two numbers
 	 * @param inputX
 	 * @param inputY
 	 * @return lcm of inputX and inputY
