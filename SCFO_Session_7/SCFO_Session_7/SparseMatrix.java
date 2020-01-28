@@ -7,21 +7,21 @@ public final class SparseMatrix {
 			throw new AssertionError();
 		sparseArray = array.clone();
 	}
-	
+
 	/**
 	 * 
 	 * @return copy of sparse array
 	 */
-	
+
 	public int[][] getSparseArray() {
 		return sparseArray.clone();
 	}
 
 	/**
-	 * 
+	 * Converts input matrix into triples form
 	 * @return triples(row, column, value) form of sparse matrix
 	 */
-	
+
 	public int[][] storeNonZero() {
 		int count = 0, tripleSize = 0;
 		for(int i = 0; i < sparseArray.length; i++) {
@@ -46,10 +46,10 @@ public final class SparseMatrix {
 	}
 
 	/**
-	 * 
+	 * Convert triples into transpose
 	 * @return transpose from triples value
 	 */
-	
+
 	public int[][] transpose() {
 		int[][] transposeArray = new int[sparseArray[0].length][sparseArray.length];
 		int rowIndex = 0, columnIndex = 1;
@@ -63,22 +63,43 @@ public final class SparseMatrix {
 	}
 
 	/**
-	 * 
+	 * Check for Symmetry by comparing triples
 	 * @return if symmetric returns 1 if not returns 0
 	 */
-	
+
 	public int symmetricCheck() {
-		int arr1[][] = sparseArray;
-		int arr2[][] = transpose();
+		int arr1[][] = storeNonZero();
+		int arr2[][] = new int[arr1.length][arr1[0].length];
+		int count = 0;
+		
+		/*int arr2[][] = transpose();
 		if(Arrays.deepEquals(arr1, arr2)) {
+			return 1;
+		} else {
+			return 0;
+		}*/
+		for(int j = 0; j < arr1[0].length; j++) {
+			arr2[0][j] = arr1[1][j];
+			arr2[1][j] = arr1[0][j];
+			arr2[2][j] = arr1[2][j];
+		}
+		
+		for(int i = 0; i < arr1[0].length; i++) {
+			for(int j = 0; j < arr1[0].length; j++) {
+				if( (arr1[0][i] == arr2[0][j]) && (arr1[1][i] == arr2[1][j]) && (arr1[2][i] == arr2[2][j]) ) {
+					count++;
+				}
+			}
+		}
+		if(count == arr1[0].length) {
 			return 1;
 		} else {
 			return 0;
 		}
 	}
-	
+
 	/**
-	 * 
+	 * Addition of sparse matrices
 	 * @param s1 is first input matrix
 	 * @param s2 is second input matrix
 	 * @return addition of them but returns empty matrix if they are of unequal length
@@ -97,9 +118,9 @@ public final class SparseMatrix {
 		}
 		return arr3;
 	}
-	
+
 	/**
-	 * 
+	 * Multiplication of sparse matrices
 	 * @param s1 : first input matrix
 	 * @param s2 : second input matrix
 	 * @return multiplication iff they follow given condition if not returns empty array
@@ -121,9 +142,9 @@ public final class SparseMatrix {
 		}
 		return arr3;
 	}
-	
+
 	public static void main(String[] args) {
-		SparseMatrix s1 = new SparseMatrix(new int[][]{ {1,0,0}, {0,1,0}, {0,0,1} });
+		SparseMatrix s1 = new SparseMatrix(new int[][]{ {1,0,1}, {0,0,1}, {1,0,0} });
 		int randomArray[][] = s1.transpose();
 		System.out.println(s1.symmetricCheck()); 
 		for(int i = 0; i < randomArray.length; i++) {
@@ -132,7 +153,7 @@ public final class SparseMatrix {
 			}
 			System.out.println("\n");
 		}
-		SparseMatrix s2 = new SparseMatrix(new int[][]{ {0,0,0}, {3,1,0}, {4,0,1} });
+		SparseMatrix s2 = new SparseMatrix(new int[][]{ {1,0,1}, {0,0,1}, {1,0,0} });
 		int addedArray[][] = s1.add(s1, s2);
 		int multipliedArray[][] = s2.multiply(s1, s2);
 		System.out.println("added array is:");
