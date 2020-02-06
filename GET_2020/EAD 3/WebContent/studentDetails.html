@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+	function validate() {
+		var regName = /^[a-zA-Z\s]+$/;
+		var name = document.getElementById('firstName').value;
+		var surname = document.getElementById('lastName').value;
+		var regFatherName = /^[a-zA-Z]+ [a-zA-Z]+$/;
+		var fatherName = document.getElementById('fatherName').value;
+		var regEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+		var mail = document.getElementById('email').value;
+		var standard = document.getElementById("class").value;
+		var age = document.getElementById('age').value;
+		var verifyComplete = 1;
+		if (!regName.test(name)) {
+			verifyComplete = 0;
+			document.getElementById("firstName").style.borderColor = "red";
+		} else {
+			document.getElementById("firstName").style.borderColor = "green";
+		}
+		if (!regName.test(surname)) {
+			verifyComplete = 0;
+			document.getElementById("lastName").style.borderColor = "red";
+		} else {
+			document.getElementById("lastName").style.borderColor = "green";
+		}
+		if (!regFatherName.test(fatherName)) {
+			verifyComplete = 0;
+			document.getElementById("fatherName").style.borderColor = "red";
+		} else {
+			document.getElementById("fatherName").style.borderColor = "green";
+		}
+		if (!regEmail.test(mail)) {
+			verifyComplete = 0;
+			document.getElementById("email").style.borderColor = "red";
+		} else {
+			document.getElementById("email").style.borderColor = "green";
+		}
+		if ((standard < 1) || (standard > 12)) {
+			verifyComplete = 0;
+			document.getElementById("class").style.borderColor = "red";
+		} else {
+			document.getElementById("class").style.borderColor = "green";
+		}
+		if ((age < 5) || (age > 25)) {
+			verifyComplete = 0;
+			document.getElementById("age").style.borderColor = "red";
+		} else {
+			document.getElementById("age").style.borderColor = "green";
+		}
+		if (verifyComplete == 1) {
+			login();
+		}
+	}
+
+	function login() {
+		document.getElementById("studentDetails").innerHTML = "Submitted";
+	}
+</script>
+<meta charset="ISO-8859-1">
+<title>Student Details Form</title>
+</head>
+<body>
+	<h1>Welcome to student edit details page</h1>
+	<form id="studentDetails" action="launchServlet" method="post">
+		<input id="firstName" name="fName" type="text" placeholder="Enter First Name" /> <br />
+	    <input id="lastName" name="lName" type="text" placeholder="Enter Last Name" /> <br /> 
+	    <input id="fatherName" name="fatherName" type="text" placeholder="Enter Father's Name" /> <br /> 
+	    <input id="email" name="emailId" type="email" placeholder="Enter Email Id" /> <br />
+		<input id="class" name="class" type="number" placeholder="Enter Class" />
+		<br />
+		<input id="age" type="number" name="age" placeholder="Enter Age" /> <br />
+	    <input id="buttonSubmit" type="submit" value="Submit Details" />
+	</form>
+</body>
+</html>
