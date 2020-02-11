@@ -72,12 +72,6 @@ public final class SparseMatrix {
 		int arr2[][] = new int[arr1.length][arr1[0].length];
 		int count = 0;
 		
-		/*int arr2[][] = transpose();
-		if(Arrays.deepEquals(arr1, arr2)) {
-			return 1;
-		} else {
-			return 0;
-		}*/
 		for(int j = 0; j < arr1[0].length; j++) {
 			arr2[0][j] = arr1[1][j];
 			arr2[1][j] = arr1[0][j];
