@@ -15,17 +15,38 @@
 				var confirmPassword = document.getElementById('passwordTwo').value;
 				var contact = document.getElementById('contactNo').value;
 				var regContact =/^[0][1-9]\d{9}$|^[1-9]\d{9}$/;
+				var flag = 1;
 				if(!regName.test(name)){
-					alert('Invalid name given.');
-					}else if(!regEmail.test(mail)){
-					alert('Invalid mail given.');
-					}else if(!regPassword.test(password)){
-					alert('Invalid password format');
-					}else if(password!=confirmPassword){
-					alert('Password and Confirm Password do not match');
-					}else if(!regContact.test(contact)){
-					alert('Enter valid Number');
-					}else {
+					document.getElementById('nameSpan').innerHTML = "Enter both first name and last name";
+					flag = 0;
+					} else {
+					document.getElementById('nameSpan').innerHTML = "";
+				}
+				if(!regEmail.test(mail)){
+					document.getElementById('emailSpan').innerHTML = "Enter mail id in correct format";
+					flag = 0;
+					} else {
+					document.getElementById('emailSpan').innerHTML = "";
+				}
+				if(!regPassword.test(password)){
+					document.getElementById('passSpan').innerHTML="Enter alphanumeric with atleast a symbol and atleast of size 8";
+					flag = 0;
+					} else {
+					document.getElementById('passSpan').innerHTML = "";
+				}
+				if(password!=confirmPassword){
+					document.getElementById('passTwoSpan').innerHTML="Password and confirm password don't match";
+					flag = 0;
+					} else {
+					document.getElementById('passTwoSpan').innerHTML = "";
+				}
+				if(!regContact.test(contact)){
+					document.getElementById('contactSpan').innerHTML="Phone number must have 10 digits(only numeric)";
+					flag = 0;
+					} else {
+					document.getElementById('contactSpan').innerHTML = "";
+				}
+				if(flag == 1) {
 					login();
 				}
 			}
@@ -68,21 +89,26 @@
 	
 	<body>
 		<h1>Welcome to Metacube Parking Manager</h1>
-		<form id="empDetails">
+		<form id="empDetails" >
 			<input id = "fullName" type = "text" placeholder = "Enter Full Name" />
+			<span id = "nameSpan"></span>
 			<br/>
 			<input id = "email" type = "email" placeholder = "Enter Email" />
+			<span id = "emailSpan"></span>
 			<br/>
 			<input id = "password" type = "password" placeholder = "Enter Password" />
+			<span id = "passSpan"></span>
 			<br/>
 			<input id = "passwordTwo" type = "password" placeholder = "Confirm Password" />
 			<br/>
+			<span id = "passTwoSpan"></span>
 			<input id = "contactNo" type = "text" placeholder = "Enter Contact No." />
+			<span id = "contactSpan"></span>
 			<br/>
 			<label> <input type = "radio" name = "gender" /> Male </label>
 			<label> <input type = "radio" name = "gender" /> Female </label>
 			<br/>
-			<input type = "submit" value = "Submit Details"  onClick = "validate()" />
+			<input type = "button" value = "Submit Details" onClick="validate()" />
 		</form>
 		
 		<h1>Add Vehicle Form</h1>
