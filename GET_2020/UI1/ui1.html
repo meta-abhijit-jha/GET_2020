@@ -1,0 +1,119 @@
+<html>
+	<head>
+		<title>
+			Metacube Parking System
+		</title>
+	</head>
+	
+	<body>
+		<h1>Welcome to Metacube Parking Manager</h1>
+		<nav>
+			<a href="#addEmployee">Add Employee</a>
+			<a href="#addVehicle">Add Vehicle</a>
+			<a href="#pricing">Pricing</a>
+			<a href="#giveFeedback">Give Feedback</a>
+		</nav>
+		<br/>
+		<br/>
+		<div id="addEmployee">
+			<h2>Add Employee Form</h2>
+			<form id="empDetails" >
+				<input id = "fullName" type = "text" placeholder = "Enter Full Name" required/>
+				<span id = "nameSpan"></span>
+				<br/>
+				<input id = "email" type = "email" placeholder = "Enter Email" required/>
+				<span id = "emailSpan"></span>
+				<br/>
+				<input id = "password" type = "password" placeholder = "Enter Password" required/>
+				<span id = "passSpan"></span>
+				<br/>
+				<input id = "passwordTwo" type = "password" placeholder = "Confirm Password" required/>
+				<br/>
+				<span id = "passTwoSpan"></span>
+				<input id = "contactNo" type = "text" placeholder = "Enter Contact No." required/>
+				<span id = "contactSpan"></span>
+				<br/>
+				<label> <input type = "radio" name = "gender" /> Male </label>
+				<label> <input type = "radio" name = "gender" /> Female </label>
+				<br/>
+				<input type = "submit" value = "Submit Details" />
+			</form>
+		</div>
+		
+		<div id="addVehicle">
+			<h2>Add Vehicle Form</h2>
+			
+			<form id="vehicleDetails" >
+				Type:
+				<select id="typeSelect">
+					<option value = "bike">Bike</option>
+					<option value = "car">Car</option>
+					<option value = "bus">Mini Bus</option>
+				</select>
+				<br/>
+				<input id = "vehicleMaker" type = "text" placeholder = "Enter Vehicle Brand" required/>
+				<br/>
+				<input id = "vehicleName" type = "text" placeholder = "Enter Vehicle Name" required/>
+				<br/>
+				<input id = "vehicleNum" type = "text" placeholder = "Enter Vehicle No." required/>
+				<br/>
+				<input id = "empId" type = "text" placeholder = "Enter Employee Id" required />
+				<br/>
+				<textarea placeholder = "Please mention identity of vehicle" ></textarea>
+				<br/>
+				<input type = "submit" value = "Submit"/>
+			</form>
+		</div>
+		
+		<div id ="giveFeedback">
+			<h2>Feedback Form</h2>
+			<textarea placeholder = "Please submit appropriate feedback." ></textarea>
+			<br/>
+		<input type = "submit" value = "Submit"/>	
+		</div>
+		
+		<div id="pricing">
+			<h2>Cost of pass</h2>
+			<select id="moneyConvert">
+				<option value = "inr" >INR</option>
+				<option value = "usd" >USD</option>
+				<option value = "yen" >YEN</option>
+			</select>
+			
+			<form id="carForm">
+				For Car :
+				<br/>
+				<label> <input type = "radio" name = "passCar" value=20 onClick="getPass(this.value)" /> Single Day Pass (20 rs) </label>
+				<br/>
+				<label> <input type = "radio" name = "passCar" value=400 onClick="getPass(this.value)"/> Monthly Pass (400 rs)</label>
+				<br/>
+				<label> <input type = "radio" name = "passCar" value=4000 onClick="getPass(this.value)"/> Yearly Pass (4000 rs)</label>
+				<br/>
+			</form>
+			
+			<form id="bikeForm">
+				For Motorbike:
+				<br/>
+				<label> <input  type = "radio" name = "passBike" value=10 onClick="getPass(this.value)"/> Single Day Pass (10 rs)</label>
+				<br/>
+				<label> <input type = "radio" name = "passBike" value=200 onClick="getPass(this.value)"/> Monthly Pass (200 rs)</label>
+				<br/>
+				<label> <input type = "radio" name = "passBike" value=2000 onClick="getPass(this.value)"/> Yearly Pass (2000 rs)</label>
+				<br/>
+			</form>
+			
+			<form id="busForm">
+				For Mini Bus :
+				<br/>
+				<label> <input type = "radio" name = "passBus" value=40 onClick="getPass(this.value)"/> Single Day Pass (40 rs)</label>
+				<br/>
+				<label> <input type = "radio" name = "passBus" value=800 onClick="getPass(this.value)"/> Monthly Pass (800 rs)</label>
+				<br/>
+				<label> <input type = "radio" name = "passBus" value=8000 onClick="getPass(this.value)"/> Yearly Pass (8000 rs)</label>
+				<br/>
+			</form>
+		</div>
+		
+		
+	</body>
+</html>		
