@@ -1,0 +1,176 @@
+<html>
+	<head>
+		<title>
+			Metacube Parking System
+		</title>
+		
+		<script>
+			function validate() {
+				var regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
+				var name = document.getElementById('fullName').value;
+				var regEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+				var mail = document.getElementById('email').value;
+				var regPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+				var password = document.getElementById('password').value;
+				var confirmPassword = document.getElementById('passwordTwo').value;
+				var contact = document.getElementById('contactNo').value;
+				var regContact =/^[0][1-9]\d{9}$|^[1-9]\d{9}$/;
+				var flag = 1;
+				if(!regName.test(name)){
+					document.getElementById('nameSpan').innerHTML = "Enter both first name and last name";
+					flag = 0;
+					} else {
+					document.getElementById('nameSpan').innerHTML = "";
+				}
+				if(!regEmail.test(mail)){
+					document.getElementById('emailSpan').innerHTML = "Enter mail id in correct format";
+					flag = 0;
+					} else {
+					document.getElementById('emailSpan').innerHTML = "";
+				}
+				if(!regPassword.test(password)){
+					document.getElementById('passSpan').innerHTML="Enter alphanumeric with atleast a symbol and atleast of size 8";
+					flag = 0;
+					} else {
+					document.getElementById('passSpan').innerHTML = "";
+				}
+				if(password!=confirmPassword){
+					document.getElementById('passTwoSpan').innerHTML="Password and confirm password don't match";
+					flag = 0;
+					} else {
+					document.getElementById('passTwoSpan').innerHTML = "";
+				}
+				if(!regContact.test(contact)){
+					document.getElementById('contactSpan').innerHTML="Phone number must have 10 digits(only numeric)";
+					flag = 0;
+					} else {
+					document.getElementById('contactSpan').innerHTML = "";
+				}
+				if(flag == 1) {
+					login();
+				}
+			}
+			function login() {
+				var empName = document.getElementById('fullName').value;
+				document.getElementById('empDetails').innerHTML="<h2>Hey "+empName+" ! You have succesfully submitted the form</h2>";
+			}
+			function vehicleSubmit() {
+				var typeOfVehicle = document.getElementById('typeSelect').value;
+				document.getElementById('vehicleDetails').innerHTML="<h2>Your Vehicle details for "+typeOfVehicle+" is successfully submitted.</h2>";
+				if(typeOfVehicle=="bike") {
+					document.getElementById('bikeForm').style.display = 'block';
+					} else if(typeOfVehicle=="car") {
+					document.getElementById('carForm').style.display = 'block';
+					} else {
+					document.getElementById('busForm').style.display = 'block';
+				}
+				document.getElementById('moneyConvert').style.display = 'block';
+			}
+			function getPass(value) {
+				var usd = value/71.25;
+				var money = document.getElementById('moneyConvert').value;
+				if(money == "usd") {
+					document.getElementById("carForm").innerHTML = "Your bill is "+usd+"USD";
+					document.getElementById("bikeForm").innerHTML = "Your bill is "+usd+"USD";
+					document.getElementById("busForm").innerHTML = "Your bill is "+usd+"USD";
+					} else if(money == "yen") {
+					document.getElementById("carForm").innerHTML = "Your bill is "+(usd*108.93)+"YEN";
+					document.getElementById("bikeForm").innerHTML = "Your bill is "+(usd*108.93)+"YEN";
+					document.getElementById("busForm").innerHTML = "Your bill is "+(usd*108.93)+"YEN";
+					} else {
+					document.getElementById("carForm").innerHTML = "Your bill is "+value+"INR";
+					document.getElementById("bikeForm").innerHTML = "Your bill is "+value+"INR";
+					document.getElementById("busForm").innerHTML = "Your bill is "+value+"INR";
+				}
+				document.getElementById('moneyConvert').style.display = 'none';
+			}
+		</script>
+	</head>
+	
+	<body>
+		<h1>Welcome to Metacube Parking Manager</h1>
+		<form id="empDetails" >
+			<input id = "fullName" type = "text" placeholder = "Enter Full Name" />
+			<span id = "nameSpan"></span>
+			<br/>
+			<input id = "email" type = "email" placeholder = "Enter Email" />
+			<span id = "emailSpan"></span>
+			<br/>
+			<input id = "password" type = "password" placeholder = "Enter Password" />
+			<span id = "passSpan"></span>
+			<br/>
+			<input id = "passwordTwo" type = "password" placeholder = "Confirm Password" />
+			<br/>
+			<span id = "passTwoSpan"></span>
+			<input id = "contactNo" type = "text" placeholder = "Enter Contact No." />
+			<span id = "contactSpan"></span>
+			<br/>
+			<label> <input type = "radio" name = "gender" /> Male </label>
+			<label> <input type = "radio" name = "gender" /> Female </label>
+			<br/>
+			<input type = "button" value = "Submit Details" onClick="validate()" />
+		</form>
+		
+		<h1>Add Vehicle Form</h1>
+		
+		<form id="vehicleDetails" >
+			<select id="typeSelect">
+				<option value = "bike">Bike</option>
+				<option value = "car">Car</option>
+				<option value = "bus">Mini Bus</option>
+			</select>
+			<br/>
+			<input id = "vehicleName" type = "text" placeholder = "Enter Vehicle Name" required/>
+			<br/>
+			<input id = "vehicleNum" type = "text" placeholder = "Enter Vehicle No." required/>
+			<br/>
+			<input id = "empId" type = "text" placeholder = "Enter Employee Id" required />
+			<br/>
+			<textarea placeholder = "Please mention identity of vehicle" ></textarea>
+			<br/>
+			<input type = "submit" value = "Submit"  onClick = "vehicleSubmit()"/>
+		</form>
+		
+		<h1>Cost of pass</h1>
+		<select id="moneyConvert" style="display:none">
+			<option value = "inr" >INR</option>
+			<option value = "usd" >USD</option>
+			<option value = "yen" >YEN</option>
+		</select>
+		<form id="carForm" style="display:none">
+			For Car :
+			<br/>
+			<label> <input type = "radio" name = "passCar" value=20 onClick="getPass(this.value)" /> Single Day Pass (20 rs) </label>
+			<br/>
+			<label> <input type = "radio" name = "passCar" value=400 onClick="getPass(this.value)"/> Monthly Pass (400 rs)</label>
+			<br/>
+			<label> <input type = "radio" name = "passCar" value=4000 onClick="getPass(this.value)"/> Yearly Pass (4000 rs)</label>
+			<br/>
+		</form>
+		
+		<form id="bikeForm" style="display:none">
+			For Motorbike:
+			<br/>
+			<label> <input  type = "radio" name = "passBike" value=10 onClick="getPass(this.value)"/> Single Day Pass (10 rs)</label>
+			<br/>
+			<label> <input type = "radio" name = "passBike" value=200 onClick="getPass(this.value)"/> Monthly Pass (200 rs)</label>
+			<br/>
+			<label> <input type = "radio" name = "passBike" value=2000 onClick="getPass(this.value)"/> Yearly Pass (2000 rs)</label>
+			<br/>
+		</form>
+		
+		<form id="busForm" style="display:none">
+			For Mini Bus :
+			<br/>
+			<label> <input type = "radio" name = "passBus" value=40 onClick="getPass(this.value)"/> Single Day Pass (40 rs)</label>
+			<br/>
+			<label> <input type = "radio" name = "passBus" value=800 onClick="getPass(this.value)"/> Monthly Pass (800 rs)</label>
+			<br/>
+			<label> <input type = "radio" name = "passBus" value=8000 onClick="getPass(this.value)"/> Yearly Pass (8000 rs)</label>
+			<br/>
+		</form>
+		<br/>
+		
+		
+	</body>
+</html>
