@@ -1,0 +1,127 @@
+<html>
+
+<head>
+    <title>
+        Metacube Parking System
+    </title>
+    <link href="metaParking.css" rel="stylesheet" />
+    <script>
+        function strengthOfPassword(password) {
+            var matchedCase = new Array();
+            matchedCase.push("[$@$!%*#?&]");
+            matchedCase.push("[A-Z]");
+            matchedCase.push("[0-9]");
+            matchedCase.push("[a-z]");
+            var count = 0;
+            for (var i = 0; i < matchedCase.length; i++) {
+                if (new RegExp(matchedCase[i]).test(password)) {
+                    count++;
+                }
+            }
+            if (count == 2) {
+                document.getElementById('password').style.borderColor = "red";
+                document.getElementById('passSpan').innerHTML = "weak password";
+            }
+            if ((count == 3) && (password.length >= 8)) {
+                document.getElementById('password').style.borderColor = "orange";
+                document.getElementById('passSpan').innerHTML = "medium password";
+            }
+            if ((count == 4) && (password.length >= 8)) {
+                document.getElementById('password').style.borderColor = "green";
+                document.getElementById('passSpan').innerHTML = "strong password";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Welcome to Metacube Parking Manager</h1>
+    <label id="canIKnowText">Can I know your</label>
+    <label id="queryText">Name?</label>
+    <div id="nameDiv">
+        <input id="fullName" type="text" placeholder="Enter Full Name" required/>
+        <span id="nameSpan"></span>
+    </div>
+    <div class="show" id="emailDiv">
+        <input id="email" type="email" placeholder="Enter Email" required/>
+        <span id="emailSpan"></span>
+    </div>
+    <div class="show" id="passwordDiv">
+        <input id="password" type="password" placeholder="Enter Password" onkeyup="strengthOfPassword(this.value)" required/>
+        <span id="passSpan"></span>
+    </div>
+    <div class="show" id="confirmPassDiv">
+        <input id="passwordTwo" type="password" placeholder="Confirm Password" required/>
+        <span id="passTwoSpan"></span>
+    </div>
+    <div class="show" id="contactNoDiv">
+        <input id="contactNo" type="text" placeholder="Enter Contact No." required/>
+        <span id="contactSpan"></span>
+    </div>
+    <div class="show" id="genderDiv">
+        <label> <input type = "radio" name = "gender" /> Male </label>
+        <label> <input type = "radio" name = "gender" /> Female </label>
+        <button type="Submit" id="genderButton" onClick="submit()">Submit Details</button>
+    </div>
+
+    <div class="show" id="vehicleTypeDiv">
+        <select id="typeSelect" onchange="selectVehicle(this.value)">
+            <option>Select</option>
+            <option value = "bike" >Bike</option>
+            <option value = "car" >Car</option>
+            <option value = "bus" >Mini Bus</option>
+        </select>
+    </div>
+    <div class="show" id="vehicleNameDiv">
+        <input id="vehicleName" type="text" placeholder="Enter Vehicle Name" required/>
+    </div>
+    <div class="show" id="vehicleNumDiv">
+        <input id="vehicleNum" type="text" placeholder="Enter Vehicle No." required/>
+    </div>
+    <div class="show" id="empIdDiv">
+        <input id="empId" type="text" placeholder="Enter Employee Id" required />
+    </div>
+    <div class="show" id="identityDiv">
+        <textarea id="identity" placeholder="Please mention identity of vehicle"></textarea>
+    </div>
+    <div class="show" id="car">
+        <select id="carSelect" onchange="getPass(this.value)">
+            <option selected disabled>Select</option>
+            <option value = 20 >Daily(20rs)</option>
+            <option value = 400 >Monthly(400rs)</option>
+            <option value = 4000 >Yearly(4000rs)</option>
+        </select>
+    </div>
+    <div class="show" id="bike">
+        <select id="bikeSelect" onchange="getPass(this.value)">
+            <option selected disabled>Select </option>
+            <option value = 10 >Daily(10rs)</option>
+            <option value = 200 >Monthly(200rs)</option>
+            <option value = 2000 >Yearly(2000rs)</option>
+        </select>
+    </div>
+    <div class="show" id="bus">
+        <select id="busSelect" onchange="getPass(this.value)">
+            <option selected disabled>Select</option>
+            <option value = 40 >Daily(40rs)</option>
+            <option value = 800 >Monthly(800rs)</option>
+            <option value = 8000>Yearly(8000rs)</option>
+        </select>
+    </div>
+    <div class="show" id="moneyTypeDiv">
+        <select id="moneyConvert" onchange="convert(this.value)">
+            <option selected disabled>Select</option>
+			<option value = "inr" >INR</option>
+			<option value = "usd" >USD</option>
+			<option value = "yen" >YEN</option>
+        </select>
+    </div>
+    <div id="ticketPrice">
+    </div>
+    <button id="btn" onClick="generatePass()" type="button">Generate Pass</button>
+    <footer>
+        <script src="metaParking.js"></script>
+    </footer>
+</body>
+
+</html>
