@@ -1,0 +1,81 @@
+.header-color {
+    background-color: #5b6be8;
+    max-width: 100%;
+}
+
+body {
+    position: relative;
+}
+
+.ul-decoration {
+    list-style: none;
+}
+
+.search {
+    text-decoration: none;
+    background-color: #6d7beb;
+    border: 2px solid #6d7beb;
+    padding: 15px;
+    width: 200px;
+    height: 10px;
+    border-radius: 25px;
+}
+
+.circle-ht {
+    height: 60px;
+}
+
+.ul-hover:hover {
+    color: blue;
+    cursor: grab;
+}
+
+.card-hover:hover {
+    background-color: lightgrey;
+}
+
+.img {
+    width: 30px;
+}
+
+.img-person {
+    width: 40px;
+}
+
+.img-member {
+    width: 50px;
+}
+
+.font {
+    font-size: 22px;
+}
+
+.font1 {
+    font-size: 18px;
+}
+
+.width {
+    width: 100%;
+}
+
+.width1 {
+    width: 70px;
+}
+
+.card-ht {
+    height: 525px;
+}
+
+.carousel-ht {
+    width: 300px;
+    height: 200px;
+}
+
+.carousel-ht1 {
+    width: 330px;
+    height: 200px;
+}
+
+.position {
+    position: relative;
+}
